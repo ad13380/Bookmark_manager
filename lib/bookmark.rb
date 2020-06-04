@@ -2,23 +2,22 @@ require 'pg'
 
 class Bookmark
   def self.all
-    if ENV['RACK_ENV'] == 'test'
-      conn = PG.connect( dbname: 'bookmark_manager_test' )   
-    else
-      conn = PG.connect( dbname: 'bookmark_manager' )  
-    end
+    conn = select_database
     result = conn.exec( "SELECT * FROM bookmarks" )
     result.map { |bookmark| bookmark["url"] }
   end
 
   def self.create(new_url)
-    if ENV['RACK_ENV'] == 'test'
-      conn = PG.connect( dbname: 'bookmark_manager_test' )   
-    else
-      conn = PG.connect( dbname: 'bookmark_manager' )  
-    end
+    conn = select_database
     conn.exec_params( 'INSERT INTO bookmarks (url) VALUES ($1)', [new_url] )
   end
 
+  def self.select_database
+    if ENV['RACK_ENV'] == 'test'
+      PG.connect( dbname: 'bookmark_manager_test' )   
+    else
+      PG.connect( dbname: 'bookmark_manager' )  
+    end
+  end
 end
 
