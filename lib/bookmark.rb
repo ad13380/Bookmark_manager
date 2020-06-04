@@ -4,12 +4,20 @@ class Bookmark
   def self.all
     conn = select_database
     result = conn.exec( "SELECT * FROM bookmarks" )
-    result.map { |bookmark| bookmark["url"] }
+    array_to_return = []
+    result.each do |bookmark| 
+      array_to_return << {
+        id: bookmark['id'],
+        title: bookmark['title'],
+        url: bookmark["url"] 
+      }
+    end
+    array_to_return
   end
 
-  def self.create(new_url)
+  def self.create(new_url, new_title)
     conn = select_database
-    conn.exec_params( 'INSERT INTO bookmarks (url) VALUES ($1)', [new_url] )
+    conn.exec("INSERT INTO bookmarks (url,title) VALUES ('#{new_url}','#{new_title}')")
   end
 
   def self.select_database

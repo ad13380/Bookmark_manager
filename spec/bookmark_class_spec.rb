@@ -4,20 +4,20 @@ require 'bookmark_helper'
 describe Bookmark do
 
   describe ".all" do
-    add_test_data
-    list = Bookmark.all
-    xit "reture a list of bookmarks" do
-      expect(list).to include("http://www.google.com")
-      expect(list).to include("http://www.makersacademy.com")
-      expect(list).to include("http://www.destroyallsoftware.com")
+    it "reture a list of bookmarks" do
+      Bookmark.create('http://www.google.com','Google')
+      Bookmark.create('http://www.makersacademy.com','Makers')
+
+      expect(Bookmark.all.first[:url]).to eq("http://www.google.com")
+      expect(Bookmark.all.first[:title]).to eq('Google')
     end
   end
 
   describe ".create" do
     it "creates a new bookmark" do
       Bookmark.create('test.url','Bookmark Title')
-      expect(Bookmark.all[:url]).to include('test.url')
-      expect(Bookmark.all[:title]).to include('Bookmark Title')
+      expect(Bookmark.all.last[:url]).to eq('test.url')
+      expect(Bookmark.all.last[:title]).to eq('Bookmark Title')
     end
   end
 end
