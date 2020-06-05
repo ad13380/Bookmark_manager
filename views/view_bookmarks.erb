@@ -1,5 +1,14 @@
 <ul>
   <% @bookmarks.each do |bookmark| %>
-   <li> <a href="<%=bookmark[:url]%>"><%=bookmark[:title]%></a></li>
+    <li> 
+      <a href="<%=bookmark.url%>">
+        <%=bookmark.title%>
+      </a>
+      <form action="/delete-bookmark" method="post">
+        <button type="submit" id="delete_<%=bookmark.id%>" name="id" value="<%=bookmark.id%>">
+          Delete
+        </button>
+      </form>
+    </li>
   <% end %>
 </ul>
