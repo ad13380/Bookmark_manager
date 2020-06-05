@@ -9,6 +9,15 @@
           Delete
         </button>
       </form>
+      <form action="/edit-bookmark" method="get">
+        <button type="submit" id="update_<%=bookmark.id%>" name="id" value="<%=bookmark.id%>">
+          Update
+        </button>
+      </form>
     </li>
   <% end %>
 </ul>
+
+<form action="/add-bookmark" method="get">
+  <input type="submit" value="Add Bookmark">
+</form>

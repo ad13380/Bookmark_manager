@@ -27,8 +27,19 @@ describe Bookmark do
       Bookmark.create('test_2.url','Bookmark Title 2')
       Bookmark.delete(Bookmark.all.last.id)
 
-      expect(Bookmark.all.last.url).not_to eq 'test_2.url' 
-      expect(Bookmark.all.last.title).not_to eq 'Bookmark Title 2' 
+      expect(Bookmark.all[0].url).not_to eq 'test_2.url' 
+      expect(Bookmark.all[0].title).not_to eq 'Bookmark Title 2' 
+    end
+  end
+
+  describe ".update" do
+    it "updates an existing bookmark" do
+      Bookmark.create('test.url','Bookmark Title')
+      Bookmark.update(Bookmark.all.last.id,'Updated Bookmark Title')
+
+
+      expect(Bookmark.all[0].url).to eq 'test.url' 
+      expect(Bookmark.all[0].title).to eq 'Updated Bookmark Title' 
     end
   end
 end

@@ -14,9 +14,14 @@ class Bookmark
     conn.exec("INSERT INTO bookmarks (url,title) VALUES ('#{new_url}','#{new_title}')")
   end
 
-  def self.delete(new_id)
+  def self.delete(id)
     conn = select_database
-    conn.exec("DELETE FROM bookmarks WHERE id = #{new_id}")
+    conn.exec("DELETE FROM bookmarks WHERE id = #{id}")
+  end
+
+  def self.update(id, new_title)
+    conn = select_database
+    conn.exec("UPDATE bookmarks SET title = '#{new_title}' WHERE id = #{id}")
   end
 
   def self.select_database

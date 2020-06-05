@@ -36,6 +36,17 @@
           1,
           null,
           null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
           null
         ]
       },
@@ -100,8 +111,30 @@
           null,
           null
         ]
+      },
+      "/Users/devbook/Projects/Week4/Bookmark_manager/spec/features/update_bookmark_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1591319371
+    "timestamp": 1591353626
   }
 }
