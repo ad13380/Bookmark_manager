@@ -2,34 +2,26 @@ require 'pg'
 
 class Bookmark
   # class methods
-
   def self.all
-    conn = select_database
-    result = conn.exec( "SELECT * FROM bookmarks" )
+    result = DatabaseConnection.query( "SELECT * FROM bookmarks" )
     result.map { |bookmark| Bookmark.new(bookmark['id'],bookmark['title'],bookmark['url']) }
   end
 
   def self.create(new_url, new_title)
-    conn = select_database
-    conn.exec("INSERT INTO bookmarks (url,title) VALUES ('#{new_url}','#{new_title}')")
+    result = DatabaseConnection.query("INSERT INTO bookmarks (url,title) VALUES ('#{new_url}','#{new_title}') RETURNING id, title, url;")
+    Bookmark.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
 
   def self.delete(id)
-    conn = select_database
-    conn.exec("DELETE FROM bookmarks WHERE id = #{id}")
+    DatabaseConnection.query("DELETE FROM bookmarks WHERE id = #{id}")
   end
 
   def self.update(id, new_title)
-    conn = select_database
-    conn.exec("UPDATE bookmarks SET title = '#{new_title}' WHERE id = #{id}")
+    DatabaseConnection.query("UPDATE bookmarks SET title = '#{new_title}' WHERE id = #{id}")
   end
 
-  def self.select_database
-    if ENV['RACK_ENV'] == 'test'
-      PG.connect( dbname: 'bookmark_manager_test' )   
-    else
-      PG.connect( dbname: 'bookmark_manager' )  
-    end
+  def comments
+    DatabaseConnection.query("SELECT * FROM comments WHERE bookmark_id = #{id};")
   end
 
   # instance methods

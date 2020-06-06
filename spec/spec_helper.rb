@@ -1,14 +1,12 @@
-
-
 require 'capybara/rspec'
 require 'rspec'
 require 'capybara'
 require 'simplecov'
 require 'simplecov-console'
+ENV['RACK_ENV'] = 'test'
+
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require_relative 'bookmark_helper'
-
-ENV['RACK_ENV'] = 'test'
 
 RSpec.configure do |config|
   config.before(:each) do

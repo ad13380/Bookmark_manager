@@ -22,6 +22,9 @@
           1,
           1,
           1,
+          null,
+          1,
+          1,
           1,
           null,
           null,
@@ -45,6 +48,33 @@
           null,
           1,
           1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/devbook/Projects/Week4/Bookmark_manager/spec/database_connection_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
           null,
           null,
           null
@@ -135,6 +165,6 @@
         ]
       }
     },
-    "timestamp": 1591353626
+    "timestamp": 1591399682
   }
 }
